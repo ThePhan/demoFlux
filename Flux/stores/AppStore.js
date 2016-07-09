@@ -1,55 +1,77 @@
 // AppStore.js
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import appConstants from '../contants/contants';
-import objectAssign from 'react/lib/Object.assign';
+import objectAssign from 'object-assign';
 import EventEmitter from 'events'.EventEmitter;
-import { EventEmitter } from 'events'
 import _ from 'lodash'
 
-export default _.extend({}, EventEmitter.prototype, {
 
-  // Initial data
-  var CHANGE_EVENT = 'change';
-  var listProducts={
-    item:[]
-  };
-  addItem:function(){
 
-  },
-  editItem:function(){
+// Initial data
+var CHANGE_EVENT = 'change';
 
-  },
-  delItem:function(){
+var listProducts = {};
 
-  },
-  delCart:function(){
+addItem: function(text) {
+        var id = new Date.getTime();
+        listProducts[id] = {
+            id: id,
+            text: text
+        }
+    },
+    editItem: function() {
 
-  },
-  addCart:function(){
+    },
+    delItem: function() {
 
-  }
-  // Emit Change event
-  AppDispatcher.register(function(payload){
+    },
+    delCart: function() {
+
+    },
+    addCart: function() {
+
+    }
+var ShopStore = objectAssign({}, EventEmitter.prototype, {
+
+    getAll: function() {
+        return listProducts;
+    },
+    /**
+     * @param {function} callback
+     */
+    addChangeListener: function(callback) {
+        this.on(CHANGE_EVENT, callback);
+    },
+    emitChange: function() {
+        this.emit(CHANGE_EVENT);
+    },
+
+
+    /**
+     * @param {function} callback
+     */
+    removeChangeListener: function(callback) {
+        this.removeListener(CHANGE_EVENT, callback);
+    }
+});
+
+AppDispatcher.register(function(payload) {
     var action = payload.action;
-    switch(action.actionType){
-       case appConstants.ADD_ITEM:
-           addItem(action.data);
-           Store.emit(CHANGE_EVENT);``
-           break;
-       case appConstants.REMOVE_ITEM:
-  });
-  emitChange: function(){
-    this.emit('change')
-  },
-
-  // Add change listener
-  addChangeListener: function(callback){
-    this.on('change', callback)
-  },
-
-  // Remove change listener
-  removeChangeListener: function(callback) {
-    this.removeListener('change', callback)
-  }
-
-})
+    var text;
+    switch (action.actionType) {
+        case appConstants.ACTION_ADD_ITEM:
+            text = action.text.trim();
+            if (text != '') {
+                addItem(action.data);
+                Store.emit(CHANGE_EVENT);
+            }
+            break;
+        case appConstants.ACTION_DELETE_ITEM:
+            deleteItem(action.id);
+            Store.emit(CHANGE_EVENT);
+            break;
+        default:
+            return true;
+    }
+});
+module.exports = ShopStore;
