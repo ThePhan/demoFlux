@@ -37,5 +37,11 @@ var Product = React.createClass( {
    );
  }
  // TODO demo v.02
+ // Create rebase again
+
+
+
+ // finish
+ 
 });
 export default Product;
