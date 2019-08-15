@@ -16,6 +16,10 @@ var Product = React.createClass( {
     //   <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
     //   <FormControl type="text" placeholder="input name product..." />
     // </InputGroup>
+    // <InputGroup id="inputGroup">
+    //   <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
+    //   <FormControl type="text" placeholder="input name product..." />
+    // </InputGroup>
    return (
      <div>
        <h2>Add new Product</h2>
