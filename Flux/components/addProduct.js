@@ -36,7 +36,6 @@ var Product = React.createClass( {
      </div>
    );
  }
- // TODO demo v.02
  // Create rebase again
 
 
