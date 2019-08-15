@@ -12,6 +12,10 @@ var Product = React.createClass( {
     this.setState ({data: e.target.value});
   },
   render: function() {
+    // <InputGroup id="inputGroup">
+    //   <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
+    //   <FormControl type="text" placeholder="input name product..." />
+    // </InputGroup>
    return (
      <div>
        <h2>Add new Product</h2>
