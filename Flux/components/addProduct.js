@@ -36,11 +36,6 @@ var Product = React.createClass( {
      </div>
    );
  }
- // Create rebase again
-
-
-
- // finish
  
 });
 export default Product;
